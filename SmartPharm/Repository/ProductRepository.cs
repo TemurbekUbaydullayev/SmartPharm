@@ -39,7 +39,7 @@ namespace SmartPharm.Repository
                     File.WriteAllText(Constants.ProductJsonPath, res);
                     count++;
                 }
-                else if (count == 0)
+                if (count == 0)
                 {
                     Console.Clear();
                     Console.ForegroundColor = ConsoleColor.Green;
@@ -86,6 +86,8 @@ namespace SmartPharm.Repository
 
                 string res = JsonConvert.SerializeObject(ProductList);
                 File.WriteAllText(Constants.ProductJsonPath, res);
+
+                Console.Clear();
 
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write("\nDelete medicine successfuly\n");

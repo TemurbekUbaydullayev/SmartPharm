@@ -70,6 +70,7 @@ namespace SmartPharm.Repository
                 catch
                 {
                     Console.WriteLine("Error");
+                    MedicineMenu();
                 }
             }
         }
@@ -86,7 +87,7 @@ namespace SmartPharm.Repository
                 {
                     sum = (decimal)(getCount * product.Cost);
                     total += sum;
-                    File.AppendAllText(Constants.ReceiptTextPath,count + ". " + getCount + " " +product.Name + "    " + getCount + " * " + product.Cost + " = " + sum + "       \n");
+                    File.AppendAllText(Constants.ReceiptTextPath,count + ". " + getCount + " " +product.Name + "          " + getCount + " * " + product.Cost + " = " + sum + " \n");
                 }
             }
             count++;
@@ -127,25 +128,30 @@ namespace SmartPharm.Repository
 
             Console.BackgroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.Black;
-            Console.WriteLine("             SmartPharm            ");
-            Console.WriteLine("-----------------------------------");
-            Console.WriteLine("    (71)224-36-68 (88)333-84-80    ");
-            Console.WriteLine("-----------------------------------");
-            Console.WriteLine("Cashier: Adminstrator              ");
-            Console.WriteLine("                " + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss"));
-            Console.WriteLine("-----------------------------------");
-            Console.WriteLine(result);
-            Console.WriteLine("-----------------------------------");
-            Console.WriteLine("Total:" + "                 " + total + " so'm");
-            Console.WriteLine("-----------------------------------");
-            Console.WriteLine("                                   ");
-            Console.WriteLine("    Thank you for your purchase    ");
+
+            Console.WriteLine("                                           ");
+            Console.WriteLine("                 SmartPharm                ");
+            Console.WriteLine("        (71)224-36-68 (88)333-84-80        ");
+            Console.WriteLine("-------------------------------------------");
+            Console.WriteLine(" Cashier: Adminstrator                     ");
+            Console.WriteLine("                       " + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss "));
+            Console.Write("-------------------------------------------\n");
+            Console.Write(result);
+            Console.Write("-------------------------------------------\n");
+            Console.WriteLine(" Total:                      " + total + " so'm ");
+            Console.WriteLine("-------------------------------------------");
+            Console.WriteLine("                                           ");
+            Console.WriteLine("        Thank you for your purchase        ");
+            Console.WriteLine("                                           ");
 
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.White;
 
             Console.Write("\n\nMedicineMenu(1) | Exit(2) \n >>>");
             string input = Console.ReadLine();
+
+            count /= count;
+            total /= total;
 
             if(input == "1")
             {

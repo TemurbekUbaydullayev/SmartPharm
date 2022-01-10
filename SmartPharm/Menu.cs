@@ -21,6 +21,7 @@ namespace SmartPharm
                     Console.Clear();
                     Adminstration admin = new Adminstration();
                     Admin admin1 = new Admin();
+
                     #region input login and password
                     Console.Write("\nEnter login: ");
                     Console.ForegroundColor = ConsoleColor.Green;
@@ -241,6 +242,7 @@ namespace SmartPharm
                 }
                 else if(inputCommandSelect == "4")
                 {
+                    Console.Clear();
                     MissionAdmin();
                 }
                 else

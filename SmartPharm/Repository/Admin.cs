@@ -88,12 +88,15 @@ namespace SmartPharm.Repository
                 string res = JsonConvert.SerializeObject(AdminList);
                 File.WriteAllText(Constants.AdminJsonPath, res);
 
+                Console.Clear();
+
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("\nDelete admin successfuly\n");
                 Console.ForegroundColor = ConsoleColor.White;
             }
             else
-            {
+            { 
+                Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\nAdmin not found\n");
                 Console.ForegroundColor = ConsoleColor.White;

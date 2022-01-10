@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace SmartPharm.Enums
 {
-    internal enum RoleOfAdmin
+    internal enum Enum
     {
-        Admin
+        
     }
 }

@@ -1,17 +1,17 @@
 [
   
   {
-    "Name": "Азимак капс. 500мг",
-    "Enterprise": "Gm pharmaceuticals",
+    "Name": "Фуцис",
+    "Enterprise": "Кырка",
     "State": "Грузия",
-    "Cost": 32067.0,
+    "Cost": 11000.0,
     "Residue": 22,
     "Trim": "12-12-2023",
     "Barcode": "4860005070479"
   },
   {
-    "Name": "Апкосул капс",
-    "Enterprise": "Ajanta Pharma Limited",
+    "Name": "Ношпа",
+    "Enterprise": "Санофи",
     "State": "Indian",
     "Cost": 12000.8,
     "Residue": 43,
@@ -19,12 +19,21 @@
     "Barcode": "8978271738192"
   },
   {
-    "Name": "Бензонал таб",
-    "Enterprise": "Татхимфармпрепараты",
+    "Name": "Креон",
+    "Enterprise": "Nobel",
     "State": "Indian",
     "Cost": 23000.8,
     "Residue": 20,
     "Trim": "03-09-2025",
     "Barcode": "6578271738341"
+  },
+  {
+    "Name": "Mezim",
+    "Enterprise": "Grandpharm",
+    "State": "Uzbekistan",
+    "Cost": 15000.2,
+    "Residue": 20,
+    "Trim": "01-01-2023",
+    "Barcode": "9876543211234"
   }
 ]
