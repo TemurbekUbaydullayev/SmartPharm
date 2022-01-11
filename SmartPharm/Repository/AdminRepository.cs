@@ -28,15 +28,16 @@ namespace SmartPharm.Repository
                 {
                     FirstName = admin.FirstName,
                     LastName = admin.LastName,
-                    Age = admin.Age,
+                    Age = admin.Age ,
                     Login = admin.Login,
                     Password = admin.Password,
                     Contact = admin.Contact
                 });
 
+                
                 string res = JsonConvert.SerializeObject(AdminList);
                 File.WriteAllText(Constants.AdminJsonPath, res);
-                //count++;
+                count++;
 
                 if (count == 0)
                 {
