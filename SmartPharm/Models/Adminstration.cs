@@ -15,10 +15,5 @@ namespace SmartPharm.Models
         public string Login { get; set; }
         public string Password { get; set; }
         public string Contact { get; set; }
-
-        internal void AddAdmin(Adminstration admin)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

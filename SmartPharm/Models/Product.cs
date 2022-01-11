@@ -8,8 +8,7 @@ namespace SmartPharm.Models
 {
     public class Product
     {
-        //internal static object product;
-
+        
         public string Name { get; set; }
         public string Enterprise { get; set; }
         public string State { get; set; }
@@ -17,6 +16,5 @@ namespace SmartPharm.Models
         public int Residue { get; set; }
         public string Trim { get; set; }
         public string Barcode { get; set; }
-
     }
 }

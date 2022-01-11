@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace SmartPharm.Repository
 {
-    public class Admin : IAdmin
+    public class AdminRepository : IAdminRepository
     {
         public void AddAdmin(Adminstration admin)
         {

@@ -13,20 +13,20 @@ using Newtonsoft.Json;
 
 namespace SmartPharm.Repository
 {
-    internal class ClientRepository : Client, IClientRepository
+    public class ClientRepository : IClientRepository
     {
         public static int count = 1;
         public static decimal total = 0;
-        public static void SearchMedicine()
-        {
 
+        public void SearchMedicine()
+        {
             Console.Write("Enter the medicine barcode: ");
             string inputMedicineBarcode = Console.ReadLine();
 
             string json = File.ReadAllText(Constants.ProductJsonPath);
-            IList<ProductRepository> ProductList = JsonConvert.DeserializeObject<IList<ProductRepository>>(json);
+            IList<Product> ProductList = JsonConvert.DeserializeObject<IList<Product>>(json);
 
-            IEnumerable<ProductRepository> query = ProductList.Where(x => x.Barcode == inputMedicineBarcode);
+            IEnumerable<Product> query = ProductList.Where(x => x.Barcode == inputMedicineBarcode);
 
             foreach (var product in query)
             {
@@ -40,54 +40,65 @@ namespace SmartPharm.Repository
                     );
                 Console.Write("\n");
             }
-            while (true)
+            if (query.Count() == 0)
             {
-                try
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Error, please try again");
+                Console.ForegroundColor = ConsoleColor.White;
+                SearchMedicine();
+            }
+            else
+            {
+                while (true)
                 {
-                    Console.Write("Shopping(yes or not): ");
-                    string selectShop = Console.ReadLine();
-                    selectShop = selectShop.Capitalize();
+                    try
+                    {
+                        Console.Write("Shopping(yes or not): ");
+                        string selectShop = Console.ReadLine();
+                        selectShop = selectShop.Capitalize();
 
-                    if (selectShop == "Yes")
-                    {
-                        Console.Write("How many will you get: ");
-                        int getCount = int.Parse(Console.ReadLine());
-                        Shopping(getCount, inputMedicineBarcode);
+                        if (selectShop == "Yes")
+                        {
+                            Console.Write("How many will you get: ");
+                            int getCount = int.Parse(Console.ReadLine());
+                            Shopping(getCount, inputMedicineBarcode);
+                        }
+                        else if (selectShop == "Not")
+                        {
+                            Console.Clear();
+                            MedicineMenu();
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("Nothing found");
+                            Console.ForegroundColor = ConsoleColor.White;
+                        }
                     }
-                    else if (selectShop == "Not")
+                    catch
                     {
-                        Console.Clear();
+                        Console.WriteLine("Error");
                         MedicineMenu();
                     }
-                    else
-                    {
-                        Console.Clear();
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Nothing found");
-                        Console.ForegroundColor = ConsoleColor.White;
-                    }
-                }
-                catch
-                {
-                    Console.WriteLine("Error");
-                    MedicineMenu();
                 }
             }
         }
-        public static void Shopping(int getCount, string inputMedicineBarcode)
+        public void Shopping(int getCount, string inputMedicineBarcode)
         {
             Console.Clear();
             string json = File.ReadAllText(Constants.ProductJsonPath);
-            IList <ProductRepository> ProductList = JsonConvert.DeserializeObject<IList<ProductRepository>>(json);
-            
-            foreach (ProductRepository product in ProductList)
+            IList<Product> ProductList = JsonConvert.DeserializeObject<IList<Product>>(json);
+
+            foreach (Product product in ProductList)
             {
                 decimal sum = 0;
-                if(product.Barcode == inputMedicineBarcode)
+                if (product.Barcode == inputMedicineBarcode)
                 {
                     sum = (decimal)(getCount * product.Cost);
                     total += sum;
-                    File.AppendAllText(Constants.ReceiptTextPath,count + ". " + getCount + " " +product.Name + "          " + getCount + " * " + product.Cost + " = " + sum + " \n");
+                    File.AppendAllText(Constants.ReceiptTextPath, count + ". " + getCount + " " + product.Name + "          " + getCount + " * " + product.Cost + " = " + sum + " \n");
                 }
             }
             count++;
@@ -96,12 +107,12 @@ namespace SmartPharm.Repository
             string inputGetMore = Console.ReadLine();
             inputGetMore = inputGetMore.Capitalize();
 
-            if(inputGetMore == "Yes")
+            if (inputGetMore == "Yes")
             {
                 Console.Clear();
                 SearchMedicine();
             }
-            else if(inputGetMore == "Not")
+            else if (inputGetMore == "Not")
             {
                 Console.Clear();
                 GetReceipt();
@@ -113,12 +124,9 @@ namespace SmartPharm.Repository
                 Console.WriteLine("Nothing found");
                 Console.ForegroundColor = ConsoleColor.White;
             }
-
         }
-
-        public static void GetReceipt()
+        public void GetReceipt()
         {
-
             string result = File.ReadAllText(Constants.ReceiptTextPath);
             File.Delete(Constants.ReceiptTextPath);
 
@@ -153,12 +161,12 @@ namespace SmartPharm.Repository
             count /= count;
             total /= total;
 
-            if(input == "1")
+            if (input == "1")
             {
                 Console.Clear();
                 MedicineMenu();
             }
-            else if(input == "2")
+            else if (input == "2")
             {
                 Environment.Exit(0);
             }
@@ -170,7 +178,7 @@ namespace SmartPharm.Repository
                 Console.ForegroundColor = ConsoleColor.White;
             }
         }
-        public static void MedicineMenu()
+        public void MedicineMenu()
         {
             while (true)
             {
@@ -180,17 +188,19 @@ namespace SmartPharm.Repository
                 if (inputClientSelect == "1")
                 {
                     Console.Clear();
-                    ClientRepository.SearchMedicine();
+                    SearchMedicine();
                 }
                 else if (inputClientSelect == "2")
                 {
                     Console.Clear();
-                    ProductRepository.ShowProduct();
+                    ProductRepository productRepository = new ProductRepository();
+                    productRepository.ShowProduct();
                 }
                 else if (inputClientSelect == "3")
                 {
                     Console.Clear();
-                    MainMenu.Menu();
+                    MainMenu mainMenu = new MainMenu();
+                    mainMenu.Menu();
                 }
                 else
                 {
@@ -201,6 +211,5 @@ namespace SmartPharm.Repository
                 }
             }
         }
-
     }
 }

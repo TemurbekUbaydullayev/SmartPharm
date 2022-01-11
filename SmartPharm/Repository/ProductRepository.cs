@@ -7,23 +7,23 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using SmartPharm.Models;
-using SmartPharm.IRepository;
 using ConsoleTables;
+using SmartPharm.IRepository;
 
 namespace SmartPharm.Repository
 {
-    internal class ProductRepository : Product, IProductRepository
+    public class ProductRepository : IProductRepositoriy
     {
-        public static void AddProduct(ProductRepository product)
+        public void AddProduct(Product product)
         {
             string json = File.ReadAllText(Constants.ProductJsonPath);
-            IList<ProductRepository> ProductList = JsonConvert.DeserializeObject<IList<ProductRepository>>(json);
+            IList<Product> ProductList = JsonConvert.DeserializeObject<IList<Product>>(json);
 
             int count = 0;
-            bool result = product.SimilarityCheckk(Constants.ProductJsonPath, product);
+            bool result = SimilarityCheckk(Constants.ProductJsonPath, product);
             if (result == false)
             {
-                ProductList.Add(new ProductRepository()
+                ProductList.Add(new Product()
                 {
                     Name = product.Name,
                     Enterprise = product.Enterprise,
@@ -62,13 +62,13 @@ namespace SmartPharm.Repository
                 Console.ForegroundColor = ConsoleColor.White;
             }
         }
-        public static void DeleteProduct()
+        public void DeleteProduct()
         {
             Console.Write("Enter product barcode: ");
             string Barcode = Console.ReadLine();
 
             string json = File.ReadAllText(Constants.ProductJsonPath);
-            IList<ProductRepository> ProductList = JsonConvert.DeserializeObject<IList<ProductRepository>>(json);
+            IList<Product> ProductList = JsonConvert.DeserializeObject<IList<Product>>(json);
             var products = ProductList.Where(x => x.Barcode == Barcode).ToList();
 
             bool result = false;
@@ -77,9 +77,9 @@ namespace SmartPharm.Repository
                 if (product.Barcode == Barcode) result = true;
             }
 
-            if(result == true)
+            if (result == true)
             {
-                foreach(var product in products)
+                foreach (var product in products)
                 {
                     ProductList.Remove(product);
                 }
@@ -95,15 +95,16 @@ namespace SmartPharm.Repository
             }
             else
             {
+                Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\nMedicine not found\n");
                 Console.ForegroundColor = ConsoleColor.White;
             }
         }
-        public static void ShowProduct()
+        public void ShowProduct()
         {
             string json = File.ReadAllText(Constants.ProductJsonPath);
-            IList<ProductRepository> ProductList = JsonConvert.DeserializeObject<List<ProductRepository>>(json);
+            IList<Product> ProductList = JsonConvert.DeserializeObject<List<Product>>(json);
 
             var productTable = new ConsoleTable("Medicine", "Enterprise", "State", "Cost", "Residue", "Trim", "Barcode");
             foreach (var product in ProductList)
@@ -126,10 +127,14 @@ namespace SmartPharm.Repository
             Console.ForegroundColor = ConsoleColor.White;
         }
 
-        internal bool SimilarityCheckk(string path, ProductRepository product)
+        bool IProductRepositoriy.SimilarityCheckk(string path, Product product)
+        {
+            throw new NotImplementedException();
+        }
+        internal bool SimilarityCheckk(string path, Product product)
         {
             string json = File.ReadAllText(Constants.ProductJsonPath);
-            IList<ProductRepository> ProductList = JsonConvert.DeserializeObject<List<ProductRepository>>(json);
+            IList<Product> ProductList = JsonConvert.DeserializeObject<List<Product>>(json);
             foreach (var iteam in ProductList)
             {
                 if (iteam.Name != null && iteam.Name != "")

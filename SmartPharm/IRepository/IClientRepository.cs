@@ -8,21 +8,9 @@ namespace SmartPharm.IRepository
 {
     internal interface IClientRepository
     {
-        public static void SearchMedicine()
-        {
-            throw new NotImplementedException();
-        }
-        public static void Shopping(int getCount, string inputMedicineBarcode)
-        {
-            throw new NotImplementedException();
-        }
-        public static void GetReceipt() 
-        {
-            throw new NotImplementedException(); 
-        }
-        public static void MedicineMenu() 
-        { 
-            throw new NotImplementedException(); 
-        }
+        public void SearchMedicine();
+        public void Shopping(int getCount, string inputMedicineBarcode);
+        public void GetReceipt();
+        public void MedicineMenu();
     }
 }

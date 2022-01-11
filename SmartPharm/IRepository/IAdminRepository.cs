@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SmartPharm.IRepository
 {
-    internal interface IAdmin
+    internal interface IAdminRepository
     {
         public  string ReadPassword();
         public bool IsAdmin(Adminstration admin);
