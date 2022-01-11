@@ -22,7 +22,7 @@ namespace SmartPharm.Repository
 
             bool result = SimilarityCheck(Constants.AdminJsonPath, admin);
 
-            if (result == false)
+            if (!result)
             {
                 AdminList.Add(new Adminstration()
                 {
@@ -36,7 +36,7 @@ namespace SmartPharm.Repository
 
                 string res = JsonConvert.SerializeObject(AdminList);
                 File.WriteAllText(Constants.AdminJsonPath, res);
-                count++;
+                //count++;
 
                 if (count == 0)
                 {
@@ -78,7 +78,7 @@ namespace SmartPharm.Repository
                 if (admin1.Contact == Contact) result = true;
             }
 
-            if (result == true)
+            if (result)
             {
                 foreach (var admin in admins)
                 {
@@ -112,7 +112,7 @@ namespace SmartPharm.Repository
 
             foreach (var iteam in AdminstList)
             {
-                if (iteam.FirstName != "")
+                if (iteam.FirstName != "" || iteam.FirstName != null)
                 {
                     if (iteam.Login == admin.Login)
                     {

@@ -126,7 +126,6 @@ namespace SmartPharm.Repository
             productTable.Write();
             Console.ForegroundColor = ConsoleColor.White;
         }
-
         bool IProductRepositoriy.SimilarityCheckk(string path, Product product)
         {
             throw new NotImplementedException();

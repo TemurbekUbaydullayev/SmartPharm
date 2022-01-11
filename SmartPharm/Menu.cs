@@ -22,7 +22,7 @@ namespace SmartPharm
                 {
                     Console.Clear();
                     Adminstration admin = new Adminstration();
-                    AdminRepository admin1 = new AdminRepository();
+                    AdminRepository adminRepo = new AdminRepository();
 
                     #region input login and password
                     Console.Write("\nEnter login: ");
@@ -31,10 +31,10 @@ namespace SmartPharm
 
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.Write("Enter password: ");
-                    admin.Password = admin1.ReadPassword();
+                    admin.Password = adminRepo.ReadPassword();
                     #endregion
 
-                    bool result = admin1.IsAdmin(admin);
+                    bool result = adminRepo.IsAdmin(admin);
                     if (result == true)
                     {
                         Console.Clear();
@@ -93,7 +93,7 @@ namespace SmartPharm
         public void AdminMenu()
         {
             Adminstration admin = new Adminstration();
-            AdminRepository Adminstration = new AdminRepository();
+            AdminRepository adminRepo = new AdminRepository();
 
 
             while (true)
@@ -131,7 +131,7 @@ namespace SmartPharm
                         Console.Write("Enter password: ");
                         admin.Password = Console.ReadLine();
 
-                        Adminstration.AddAdmin(admin);
+                        adminRepo.AddAdmin(admin);
 
                     }
                     catch
@@ -146,12 +146,12 @@ namespace SmartPharm
                 else if (inputAdminSelect == "2")
                 {
                     Console.Clear();
-                    Adminstration.DeleteAdmin();
+                    adminRepo.DeleteAdmin();
                 }
                 else if (inputAdminSelect == "3")
                 {
                     Console.Clear();
-                    Adminstration.ShowAdmin();
+                    adminRepo.ShowAdmin();
                 }
                 else if (inputAdminSelect == "4")
                 {
@@ -202,7 +202,7 @@ namespace SmartPharm
         public void ProductMenu()
         {
             Product product = new Product();
-            ProductRepository Product = new ProductRepository();
+            ProductRepository productRepo = new ProductRepository();
             while (true)
             {
                 Console.Write("\nAdd medicine(1) | Delete medicine(2) | Medicines list(3) | Go back(4)\n >>> ");
@@ -242,7 +242,7 @@ namespace SmartPharm
                         Console.Write("Enter barcode: ");
                         product.Barcode = Console.ReadLine();
 
-                        Product.AddProduct(product);
+                        productRepo.AddProduct(product);
                     }
                     catch
                     {
@@ -255,12 +255,12 @@ namespace SmartPharm
                 else if (inputCommandSelect == "2")
                 {
                     Console.Clear();
-                    Product.DeleteProduct();
+                    productRepo.DeleteProduct();
                 }
                 else if (inputCommandSelect == "3")
                 {
                     Console.Clear();
-                    Product.ShowProduct();
+                    productRepo.ShowProduct();
                 }
                 else if (inputCommandSelect == "4")
                 {

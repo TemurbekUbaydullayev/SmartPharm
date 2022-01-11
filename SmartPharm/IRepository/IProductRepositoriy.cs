@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SmartPharm.IRepository
 {
-    public interface IProductRepositoriy
+    internal interface IProductRepositoriy
     {
         public void AddProduct(Product product);
         public void DeleteProduct();

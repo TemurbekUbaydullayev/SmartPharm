@@ -98,6 +98,15 @@ namespace SmartPharm.Repository
                 {
                     sum = (decimal)(getCount * product.Cost);
                     total += sum;
+
+                    ProductList.Add(new Product()
+                    {
+                        Residue = product.Residue - getCount,
+                    });
+
+                    string res = JsonConvert.SerializeObject(product);
+                    File.WriteAllText(Constants.ProductJsonPath, res);
+
                     File.AppendAllText(Constants.ReceiptTextPath, count + ". " + getCount + " " + product.Name + "          " + getCount + " * " + product.Cost + " = " + sum + " \n");
                 }
             }
