@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SmartPharm.Models
+﻿namespace SmartPharm.Models
 {
     public class Product
     {
-        
         public string Name { get; set; }
         public string Enterprise { get; set; }
         public string State { get; set; }

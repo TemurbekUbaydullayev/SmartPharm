@@ -1,11 +1,10 @@
-﻿using System;
-using ConsoleTables;
-using SmartPharm.Models;
-using SmartPharm.IRepository;
-using SmartPharm.Service;
-using SmartPharm.Extension;
-using System.Collections.Generic;
+﻿using ConsoleTables;
 using Newtonsoft.Json;
+using SmartPharm.IRepository;
+using SmartPharm.Models;
+using SmartPharm.Service;
+using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -28,13 +27,13 @@ namespace SmartPharm.Repository
                 {
                     FirstName = admin.FirstName,
                     LastName = admin.LastName,
-                    Age = admin.Age ,
+                    Age = admin.Age,
                     Login = admin.Login,
                     Password = admin.Password,
                     Contact = admin.Contact
                 });
 
-                
+
                 string res = JsonConvert.SerializeObject(AdminList);
                 File.WriteAllText(Constants.AdminJsonPath, res);
                 count++;
@@ -96,7 +95,7 @@ namespace SmartPharm.Repository
                 Console.ForegroundColor = ConsoleColor.White;
             }
             else
-            { 
+            {
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\nAdmin not found\n");
@@ -164,7 +163,7 @@ namespace SmartPharm.Repository
             string json = File.ReadAllText(Constants.AdminJsonPath);
             IList<Adminstration> AdminList = JsonConvert.DeserializeObject<List<Adminstration>>(json);
 
-            var adminTable = new ConsoleTable("Admin", "Age", "Phone number", "Login");
+            ConsoleTable adminTable = new ConsoleTable("Admin", "Age", "Phone number", "Login");
             foreach (var admin in AdminList)
             {
                 if (admin.FirstName != "" && admin.LastName != null)
@@ -176,6 +175,7 @@ namespace SmartPharm.Repository
                         );
                 }
             }
+
             Console.ForegroundColor = ConsoleColor.Green;
             adminTable.Write();
             Console.ForegroundColor = ConsoleColor.White;

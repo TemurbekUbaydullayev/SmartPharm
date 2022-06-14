@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using SmartPharm.Extension;
+using SmartPharm.IRepository;
 using SmartPharm.Models;
 using SmartPharm.Repository;
-using SmartPharm.Extension;
-using SmartPharm.Service;
-using SmartPharm.IRepository;
+using System;
 
 namespace SmartPharm
 {
@@ -22,7 +20,7 @@ namespace SmartPharm
                 {
                     Console.Clear();
                     Adminstration admin = new Adminstration();
-                    AdminRepository adminRepo = new AdminRepository();
+                    IAdminRepository adminRepo = new AdminRepository();
 
                     #region input login and password
                     Console.Write("\nEnter login: ");
@@ -79,6 +77,38 @@ namespace SmartPharm
                 else if (input == "3")
                 {
                     Environment.Exit(0);
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("\nNothing Found\n");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+
+            }
+        }
+        public void MissionAdmin()
+        {
+            //AdminRepository admin = new AdminRepository();
+            while (true)
+            {
+                Console.Write("\nProduct(1) | Adminstrator settings(2) | Main Menu(3)\n >>> ");
+                string input = Console.ReadLine();
+                if (input == "1")
+                {
+                    Console.Clear();
+                    ProductMenu();
+                }
+                else if (input == "2")
+                {
+                    Console.Clear();
+                    AdminMenu();
+                }
+                else if (input == "3")
+                {
+                    Console.Clear();
+                    Menu();
                 }
                 else
                 {
@@ -167,38 +197,6 @@ namespace SmartPharm
                 }
             }
         }
-        public void MissionAdmin()
-        {
-            //AdminRepository admin = new AdminRepository();
-            while (true)
-            {
-                Console.Write("\nProduct(1) | Adminstrator settings(2) | Main Menu(3)\n >>> ");
-                string input = Console.ReadLine();
-                if (input == "1")
-                {
-                    Console.Clear();
-                    ProductMenu();
-                }
-                else if (input == "2")
-                {
-                    Console.Clear();
-                    AdminMenu();
-                }
-                else if (input == "3")
-                {
-                    Console.Clear();
-                    Menu();
-                }
-                else
-                {
-                    Console.Clear();
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("\nNothing Found\n");
-                    Console.ForegroundColor = ConsoleColor.White;
-                }
-
-            }
-        }
         public void ProductMenu()
         {
             Product product = new Product();
@@ -277,7 +275,5 @@ namespace SmartPharm
 
             }
         }
-
-
     }
 }

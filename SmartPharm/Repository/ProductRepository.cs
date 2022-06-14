@@ -1,14 +1,12 @@
-﻿using System;
-using System.IO;
-using SmartPharm.Service;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ConsoleTables;
 using Newtonsoft.Json;
-using SmartPharm.Models;
-using ConsoleTables;
 using SmartPharm.IRepository;
+using SmartPharm.Models;
+using SmartPharm.Service;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace SmartPharm.Repository
 {
@@ -69,6 +67,7 @@ namespace SmartPharm.Repository
 
             string json = File.ReadAllText(Constants.ProductJsonPath);
             IList<Product> ProductList = JsonConvert.DeserializeObject<IList<Product>>(json);
+
             var products = ProductList.Where(x => x.Barcode == Barcode).ToList();
 
             bool result = false;
@@ -126,14 +125,15 @@ namespace SmartPharm.Repository
             productTable.Write();
             Console.ForegroundColor = ConsoleColor.White;
         }
-        bool IProductRepositoriy.SimilarityCheckk(string path, Product product)
-        {
-            throw new NotImplementedException();
-        }
-        internal bool SimilarityCheckk(string path, Product product)
+        //bool IProductRepositoriy.SimilarityCheckk(string path, Product product)
+        //{
+        //    throw new NotImplementedException();
+        //}
+        private bool SimilarityCheckk(string path, Product product)
         {
             string json = File.ReadAllText(Constants.ProductJsonPath);
             IList<Product> ProductList = JsonConvert.DeserializeObject<List<Product>>(json);
+
             foreach (var iteam in ProductList)
             {
                 if (iteam.Name != null && iteam.Name != "")
@@ -143,6 +143,5 @@ namespace SmartPharm.Repository
             }
             return false;
         }
-
     }
 }

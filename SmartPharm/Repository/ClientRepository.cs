@@ -1,15 +1,12 @@
-﻿using SmartPharm.Models;
-using SmartPharm.IRepository;
-using System;
-using System.IO;
-using ConsoleTables;
+﻿using Newtonsoft.Json;
 using SmartPharm.Extension;
+using SmartPharm.IRepository;
+using SmartPharm.Models;
 using SmartPharm.Service;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
 
 namespace SmartPharm.Repository
 {

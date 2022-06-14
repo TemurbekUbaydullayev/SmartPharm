@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SmartPharm.Enums;
-
-namespace SmartPharm.Models
+﻿namespace SmartPharm.Models
 {
-    public class Adminstration 
+    public class Adminstration
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
